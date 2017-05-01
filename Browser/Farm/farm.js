@@ -14,7 +14,7 @@ function getCookie(cname) {
     return "";
 }
 function setCookie(cname, cvalue) {
-    w.content.document.cookie = cname + "=" + cvalue + ";path=/";
+    d.cookie = cname + "=" + cvalue + ";path=/";
 }
 function farm() {
 	clearMessages();
@@ -74,7 +74,6 @@ function farm() {
 	return "ok";
 }
 function hasEnoughTroops(troops){
-	var d = w.content.document;
 	for(var unit in troops){
 		var currTroopsStr = d.getElementById("units_entry_all_"+unit).innerHTML;
 		var currTroops = parseInt(currTroopsStr.substring(1, currTroopsStr.length-1));
@@ -103,8 +102,8 @@ function clearMessages(){
 		msgs[i].outerHTML = "";
 	}
 }
-var w = window.content;
-var d = w.content.document;
+var w = window.content? window.content : window;
+var d = w.document;
 var ret = farm();
 if(ret !== "ok")
 	writeMessage(ret, "error");
